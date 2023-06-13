@@ -1,0 +1,8 @@
+.booksTable {
+  min-width: 400px;
+  margin: 0 auto;
+}
+
+thead {
+  background: black;
+}

@@ -1,0 +1,15 @@
+.bookRecord {
+  cursor: pointer;
+}
+.bookRecord:hover {
+  background: gray;
+  opacity: 0.8;
+}
+.item {
+  padding: 5px;
+  height: 30px;
+}
+
+td {
+  min-width: 200px;
+}
