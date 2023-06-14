@@ -1,7 +1,7 @@
-import { lazy, Suspense } from "react";
-import { createBrowserRouter, createHashRouter } from "react-router-dom";
-import { ErrorPage } from "./ErrorPage";
+import { Suspense } from "react";
+import { createBrowserRouter } from "react-router-dom";
 import { Home } from "../pages/Home/Home";
+import { ErrorPage } from "./ErrorPage";
 
 import { Layout } from "../components/layout";
 // const CurrencyDetails = lazy(() => import("../modules/CurrencyDetails/CurrencyDetails"));

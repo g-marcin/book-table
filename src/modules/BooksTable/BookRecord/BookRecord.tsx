@@ -1,7 +1,7 @@
-import { FC, useEffect, useState, useContext } from "react";
-import styles from "./bookRecord.module.css";
+import { FC, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BookContext } from "../../../contexts/BookContext";
+import styles from "./bookRecord.module.css";
 
 type BookRecordProps = {
   id: string;
@@ -22,21 +22,22 @@ export const BookRecord: FC<BookRecordProps> = ({
   title,
   category,
   publisher,
-
   presentAuthorSetter,
-  presentBook,
+  
   presentBookSetter,
 }) => {
   const [isSelected, setIsSelected] = useState(false);
   const navigate = useNavigate();
-  const { presentAuthor } = useContext(BookContext);
+  const { presentAuthor,presentBook } = useContext(BookContext);
   useEffect(() => {
     setIsSelected(presentBook === id);
+    if(presentBook!==""){
+      navigate(`/${presentAuthor}`)
+    }
   }, [presentBook]);
 
   const bookRecordHandler = async () => {
     presentAuthorSetter(author);
-    navigate(`/${presentAuthor}`);
     presentBookSetter(id);
   };
 
