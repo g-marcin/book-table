@@ -2,40 +2,88 @@ import { FC, createContext, useEffect, PropsWithChildren, useState } from "react
 import { httpClient } from "../../common/httpClient";
 
 type BookContextType = {
-  fetchedBooksData?: any;
-  presentAuthor?: string;
+  fetchedBooksData: any;
+  presentAuthor: string;
   presentAuthorSetter: (presentAuthor: string) => void;
+  presentBook: string;
+  presentBookSetter: (id: string) => void;
+  presentDescription: string;
+  presentDescriptionSetter: (id: string) => void;
 };
 
-export const BookContext = createContext<BookContextType>({ presentAuthorSetter: () => null });
+type MappedBookObject = {
+  [k: string]: string | boolean;
+};
+
+export const BookContext = createContext<BookContextType>({
+  fetchedBooksData: { key: "value" },
+  presentAuthor: "Ernest Hemingway",
+  presentAuthorSetter: () => {
+    return;
+  },
+  presentBook: "",
+  presentBookSetter: () => {
+    return;
+  },
+  presentDescription: "",
+  presentDescriptionSetter: () => {
+    return;
+  },
+});
 export const BookContextProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [fetchedBooks, setFetchedBooks] = useState<any>();
-  const [presentAuthor, setPresentAuthor] = useState<string>("Ernest Hemingway");
+  const [fetchedBooks, setFetchedBooks] = useState<MappedBookObject[]>([{ key: "value" }]);
+  const [presentAuthor, setPresentAuthor] = useState<string>("");
+  const [presentBook, setPresentBook] = useState<string>("");
+  const [presentDescription, setPresentDescription] = useState<string>("");
 
   useEffect(() => {
-    const promise1 = httpClient.get("/volumes?q=inauthor:Tolkien&maxResults=3&startIndex=20");
-    const promise2 = httpClient.get("/volumes?q=inauthor:Hemingway&maxResults=3&startIndex=0");
-    const promise3 = httpClient.get("/volumes?q=inauthor:Steinbeck&maxResults=3&startIndex=0");
+    const promise1 = httpClient.get("/volumes?q=inauthor:J.R.R&maxResults=12&startIndex=20");
+    const promise2 = httpClient.get("/volumes?q=inauthor:Hemingway&maxResults=12&startIndex=0");
+    const promise3 = httpClient.get("/volumes?q=inauthor:Steinbeck&maxResults=12&startIndex=0");
 
     Promise.all([promise1, promise2, promise3]).then((values) => {
-      const bookCollection: any = [];
+      const bookCollection: MappedBookObject[] = [];
+
       values.map((response) => {
-        response.data.items.map((item: any) => {
+        response.data.items.map((item: { [k: string]: any }) => {
+          if (!item.volumeInfo.authors) {
+            return;
+          }
+          if (!item.volumeInfo.categories) {
+            return;
+          }
+          if (!item.volumeInfo.publisher) {
+            return;
+          }
           bookCollection.push({
             id: item.id,
-            authors: item.volumeInfo.authors ? item.volumeInfo.authors[0] : "unknown",
+            author: item.volumeInfo.authors[0],
             title: item.volumeInfo.title,
-            category: item.volumeInfo.categories ? item.volumeInfo.categories[0] : "unknown",
-            publisher: item.volumeInfo.publisher ? item.volumeInfo.publisher : "unknown",
+            category: item.volumeInfo.categories[0],
+            publisher: item.volumeInfo.publisher,
+            image: item.volumeInfo.imageLinks.thumbnail,
           });
         });
       });
       setFetchedBooks(bookCollection);
     });
   }, []);
+  useEffect(() => {
+    const fetchedBooksCopy = [...fetchedBooks];
+    const newFetchedBooks = fetchedBooksCopy.map((book) => {
+      if (book.id === presentBook) {
+        book.selected = true;
+      }
+      return book;
+    });
+    setFetchedBooks(newFetchedBooks);
+  }, [presentBook]);
 
   function presentAuthorSetter(presentAuthor: string) {
     setPresentAuthor(presentAuthor);
+  }
+  function presentBookSetter(id: string) {
+    setPresentBook(id);
   }
 
   return (
@@ -44,6 +92,10 @@ export const BookContextProvider: FC<PropsWithChildren> = ({ children }) => {
         fetchedBooksData: fetchedBooks,
         presentAuthor: presentAuthor,
         presentAuthorSetter: presentAuthorSetter,
+        presentBook: presentBook,
+        presentBookSetter: presentBookSetter,
+        presentDescription: presentDescription,
+        presentDescriptionSetter: setPresentDescription,
       }}
     >
       {children}

@@ -1,8 +1,19 @@
 .booksTable {
   min-width: 400px;
-  margin: 0 auto;
 }
 
 thead {
   background: black;
+  height: 100px;
+}
+
+.tableBody {
+  height: 20vh;
+}
+.wrapper {
+  overflow: scroll;
+}
+
+.tableHeader {
+  position: sticky;
 }

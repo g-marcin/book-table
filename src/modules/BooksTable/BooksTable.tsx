@@ -6,43 +6,54 @@ import { BookContext } from "../../contexts/BookContext";
 
 type BookRecordProps = {
   id: string;
-  authors: string;
+  author: string;
   title: string;
   category: string;
   publisher: string;
+  selected: boolean;
+  presentAuthor: string;
   presentAuthorSetter: (presentAuthor: string) => void;
+  presentBook: string;
+  presentBookSetter: (id: string) => void;
 };
 
 export const BooksTable: FC = () => {
-  const { fetchedBooksData, presentAuthorSetter } = useContext(BookContext);
+  const { fetchedBooksData, presentAuthor, presentAuthorSetter, presentBook, presentBookSetter } = useContext(BookContext);
 
   return (
     <>
-      <Table variant="dark" striped className={styles["booksTable"]}>
-        <thead>
-          <tr>
-            <th> Book ID</th>
-            <th>Author</th>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Publisher</th>
-          </tr>
-        </thead>
-        <tbody>
-          {fetchedBooksData.map(({ id, authors, title, category, publisher }: BookRecordProps) => {
-            return (
-              <BookRecord
-                id={id}
-                authors={authors}
-                title={title}
-                category={category}
-                publisher={publisher}
-                presentAuthorSetter={presentAuthorSetter}
-              />
-            );
-          })}
-        </tbody>
-      </Table>
+      <div className={styles["wrapper"]}>
+        <Table variant="dark" striped className={styles["booksTable"]}>
+          <thead className={styles.tableHeader}>
+            <tr>
+              <th> Book ID</th>
+              <th>Author</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Publisher</th>
+            </tr>
+          </thead>
+          <tbody className="tableBody">
+            {fetchedBooksData.map(({ id, author, title, category, publisher, selected }: BookRecordProps, index: number) => {
+              return (
+                <BookRecord
+                  id={id}
+                  author={author}
+                  title={title}
+                  category={category}
+                  publisher={publisher}
+                  presentAuthor={presentAuthor}
+                  presentAuthorSetter={presentAuthorSetter}
+                  presentBook={presentBook}
+                  presentBookSetter={presentBookSetter}
+                  selected={selected}
+                  key={index}
+                />
+              );
+            })}
+          </tbody>
+        </Table>
+      </div>
     </>
   );
 };

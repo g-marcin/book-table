@@ -1,5 +1,4 @@
 .main {
-  min-height: 90vh;
+  max-height: 88vh;
   display: flex;
-  flex-direction: column;
 }

@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, createHashRouter } from "react-router-dom";
 import { ErrorPage } from "./ErrorPage";
 import { Home } from "../pages/Home/Home";
 
@@ -14,28 +14,70 @@ export const AppRouter = createBrowserRouter([
     errorElement: <ErrorPage errorMessage="Page not found" />,
     children: [
       {
-        path: "",
-        errorElement: <ErrorPage errorMessage="Page not found" />,
-        children: [
-          {
-            index: true,
-            element: (
-              <Suspense>
-                <Home />
-              </Suspense>
-            ),
-          },
-
-          // {
-          //   path: "details/:currencyCode",
-          //   element: (
-          //     <Suspense>
-          //       <CurrencyDetails />
-          //     </Suspense>
-          //   ),
-          // },
-        ],
+        index: true,
+        element: (
+          <Suspense>
+            <Home />
+          </Suspense>
+        ),
       },
+
+      // {
+      //   path: "details/:currencyCode",
+      //   element: (
+      //     <Suspense>
+      //       <CurrencyDetails />
+      //     </Suspense>
+      //   ),
+      // },
+    ],
+  },
+  {
+    path: "/:author",
+    element: <Layout />,
+    errorElement: <ErrorPage errorMessage="Page not found" />,
+    children: [
+      {
+        index: true,
+        element: (
+          <Suspense>
+            <Home />
+          </Suspense>
+        ),
+      },
+
+      // {
+      //   path: "details/:currencyCode",
+      //   element: (
+      //     <Suspense>
+      //       <CurrencyDetails />
+      //     </Suspense>
+      //   ),
+      // },
+    ],
+  },
+  {
+    path: "/:author/:bookId",
+    element: <Layout />,
+    errorElement: <ErrorPage errorMessage="Page not found" />,
+    children: [
+      {
+        index: true,
+        element: (
+          <Suspense>
+            <Home />
+          </Suspense>
+        ),
+      },
+
+      // {
+      //   path: "details/:currencyCode",
+      //   element: (
+      //     <Suspense>
+      //       <CurrencyDetails />
+      //     </Suspense>
+      //   ),
+      // },
     ],
   },
 ]);
