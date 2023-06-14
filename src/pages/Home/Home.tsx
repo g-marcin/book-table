@@ -9,7 +9,7 @@ export const Home: FC = () => {
   return (
     <main className={styles.main}>
       <BooksTable />
-      {author && <Details />}
+      {author ? <Details /> : <div>Please choose table item...</div>}
     </main>
   );
 };

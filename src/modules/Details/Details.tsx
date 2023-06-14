@@ -32,7 +32,7 @@ export const Details: FC = () => {
                   className={styles["detailsItem"]}
                   onClick={() => {
                     showBookDetails(book.id);
-                    navigate(`/${presentAuthor}/${book.id}`);
+                    navigate(`/${presentAuthor}/${book.title}`);
                   }}
                 >
                   <p>{book.title}</p>
