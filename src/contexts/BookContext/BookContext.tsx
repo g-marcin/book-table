@@ -1,12 +1,13 @@
 import { FC, createContext, useEffect, PropsWithChildren, useState } from "react";
 import { httpClient } from "../../common/httpClient";
+import { fetchedBooksData } from "../../types";
 
 type BookContextType = {
-  fetchedBooksData: any;
+  fetchedBooksData: fetchedBooksData;
   presentAuthor: string;
   presentAuthorSetter: (presentAuthor: string) => void;
-  presentBook: string;
-  presentBookSetter: (id: string) => void;
+  presentRecord: string;
+  presentRecordSetter: (id: string) => void;
   presentDescription: string;
   presentDescriptionSetter: (id: string) => void;
 };
@@ -17,12 +18,12 @@ type MappedBookObject = {
 
 export const BookContext = createContext<BookContextType>({
   fetchedBooksData: { key: "value" },
-  presentAuthor: "Ernest Hemingway",
+  presentAuthor: "",
   presentAuthorSetter: () => {
     return;
   },
-  presentBook: "",
-  presentBookSetter: () => {
+  presentRecord: "",
+  presentRecordSetter: () => {
     return;
   },
   presentDescription: "",
@@ -31,9 +32,9 @@ export const BookContext = createContext<BookContextType>({
   },
 });
 export const BookContextProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [fetchedBooks, setFetchedBooks] = useState<MappedBookObject[]>([{ key: "value" }]);
+  const [fetchedBooks, setFetchedBooks] = useState<MappedBookObject[]>([{ key: "" }]);
+  const [presentRecord, setPresentRecord] = useState<string>("");
   const [presentAuthor, setPresentAuthor] = useState<string>("");
-  const [presentBook, setPresentBook] = useState<string>("");
   const [presentDescription, setPresentDescription] = useState<string>("");
 
   useEffect(() => {
@@ -43,9 +44,8 @@ export const BookContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
     Promise.all([promise1, promise2, promise3]).then((values) => {
       const bookCollection: MappedBookObject[] = [];
-
       values.map((response) => {
-        response.data.items.map((item: { [k: string]: any }) => {
+        response.data.items.map((item: fetchedBooksData) => {
           if (!item.volumeInfo.authors) {
             return;
           }
@@ -71,19 +71,22 @@ export const BookContextProvider: FC<PropsWithChildren> = ({ children }) => {
   useEffect(() => {
     const fetchedBooksCopy = [...fetchedBooks];
     const newFetchedBooks = fetchedBooksCopy.map((book) => {
-      if (book.id === presentBook) {
-        book.selected = true;
+      if (book.id === presentRecord) {
+        book.isSelected = true;
       }
       return book;
     });
     setFetchedBooks(newFetchedBooks);
-  }, [presentBook]);
+  }, [presentRecord]);
 
   function presentAuthorSetter(presentAuthor: string) {
     setPresentAuthor(presentAuthor);
   }
-  function presentBookSetter(id: string) {
-    setPresentBook(id);
+  function presentRecordSetter(id: string) {
+    setPresentRecord(id);
+  }
+  function presentDescriptionSetter(destcription: string) {
+    setPresentDescription(destcription);
   }
 
   return (
@@ -92,10 +95,10 @@ export const BookContextProvider: FC<PropsWithChildren> = ({ children }) => {
         fetchedBooksData: fetchedBooks,
         presentAuthor: presentAuthor,
         presentAuthorSetter: presentAuthorSetter,
-        presentBook: presentBook,
-        presentBookSetter: presentBookSetter,
+        presentRecord: presentRecord,
+        presentRecordSetter: presentRecordSetter,
         presentDescription: presentDescription,
-        presentDescriptionSetter: setPresentDescription,
+        presentDescriptionSetter: presentDescriptionSetter,
       }}
     >
       {children}

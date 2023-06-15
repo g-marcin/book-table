@@ -10,15 +10,16 @@ type BookRecordProps = {
   title: string;
   category: string;
   publisher: string;
-  selected: boolean;
+  isSelected: boolean;
   presentAuthor: string;
   presentAuthorSetter: (presentAuthor: string) => void;
-  presentBook: string;
-  presentBookSetter: (id: string) => void;
+  presentRecord: string;
+  presentRecordSetter: (id: string) => void;
 };
 
 export const BooksTable: FC = () => {
-  const { fetchedBooksData, presentAuthor, presentAuthorSetter, presentBook, presentBookSetter } = useContext(BookContext);
+  const { fetchedBooksData, presentAuthor, presentAuthorSetter, presentRecord, presentRecordSetter } =
+    useContext(BookContext);
 
   return (
     <>
@@ -34,23 +35,25 @@ export const BooksTable: FC = () => {
             </tr>
           </thead>
           <tbody className="tableBody">
-            {fetchedBooksData.map(({ id, author, title, category, publisher, selected }: BookRecordProps, index: number) => {
-              return (
-                <BookRecord
-                  id={id}
-                  author={author}
-                  title={title}
-                  category={category}
-                  publisher={publisher}
-                  presentAuthor={presentAuthor}
-                  presentAuthorSetter={presentAuthorSetter}
-                  presentBook={presentBook}
-                  presentBookSetter={presentBookSetter}
-                  selected={selected}
-                  key={index}
-                />
-              );
-            })}
+            {fetchedBooksData.map(
+              ({ id, author, title, category, publisher, isSelected }: BookRecordProps, index: number) => {
+                return (
+                  <BookRecord
+                    id={id}
+                    author={author}
+                    title={title}
+                    category={category}
+                    publisher={publisher}
+                    presentAuthor={presentAuthor}
+                    presentAuthorSetter={presentAuthorSetter}
+                    presentRecord={presentRecord}
+                    presentRecordSetter={presentRecordSetter}
+                    isSelected={isSelected}
+                    key={index}
+                  />
+                );
+              }
+            )}
           </tbody>
         </Table>
       </div>

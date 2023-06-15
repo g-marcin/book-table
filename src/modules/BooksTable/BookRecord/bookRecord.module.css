@@ -11,6 +11,6 @@
   height: 30px;
 }
 
-.selected {
+.isSelected {
   background: rgba(238, 215, 4, 0.5);
 }

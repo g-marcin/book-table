@@ -1,18 +1,14 @@
-.booksTable {
-}
-
 thead {
   background: black;
   height: 100px;
 }
-
 .tableBody {
   height: 20vh;
 }
 .wrapper {
   overflow: scroll;
+  border: 1px solid white;
 }
-
 .tableHeader {
   position: sticky;
 }

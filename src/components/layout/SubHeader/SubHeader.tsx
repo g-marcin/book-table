@@ -1,27 +1,25 @@
 import { FC, useContext } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { BookContext } from "../../../contexts/BookContext";
+import { BookContext } from "../../../contexts/";
 import styles from "./subheader.module.css";
 
 export const SubHeader: FC = () => {
   const { bookId, author } = useParams();
-  const navigate = useNavigate()
-  const { presentAuthor, presentBook, presentBookSetter } = useContext(BookContext);
-
+  const { presentAuthor, presentRecordSetter } = useContext(BookContext);
+  const navigate = useNavigate();
   return (
     <nav className={styles["nav"]}>
       {
         <NavLink
           to="/"
           onClick={() => {
-            presentBookSetter("");
-            navigate("/")
+            presentRecordSetter("");
+            navigate("/");
           }}
         >
           Home
         </NavLink>
       }
-
       {author && (
         <NavLink to={`/${author}`}>
           {"> "}

@@ -9,11 +9,11 @@ type BookRecordProps = {
   title: string;
   category: string;
   publisher: string;
-  selected: boolean;
+  isSelected: boolean;
   presentAuthor: string;
   presentAuthorSetter: (presentAuthor: string) => void;
-  presentBook: string;
-  presentBookSetter: (id: string) => void;
+  presentRecord: string;
+  presentRecordSetter: (id: string) => void;
 };
 
 export const BookRecord: FC<BookRecordProps> = ({
@@ -23,28 +23,28 @@ export const BookRecord: FC<BookRecordProps> = ({
   category,
   publisher,
   presentAuthorSetter,
-  
-  presentBookSetter,
+
+  presentRecordSetter,
 }) => {
-  const [isSelected, setIsSelected] = useState(false);
+  const [isisSelected, setIsisSelected] = useState(false);
   const navigate = useNavigate();
-  const { presentAuthor,presentBook } = useContext(BookContext);
+  const { presentAuthor, presentRecord } = useContext(BookContext);
   useEffect(() => {
-    setIsSelected(presentBook === id);
-    if(presentBook!==""){
-      navigate(`/${presentAuthor}`)
+    setIsisSelected(presentRecord === id);
+    if (presentRecord !== "") {
+      navigate(`/${presentAuthor}`);
     }
-  }, [presentBook]);
+  }, [presentRecord]);
 
   const bookRecordHandler = async () => {
     presentAuthorSetter(author);
-    presentBookSetter(id);
+    presentRecordSetter(id);
   };
 
   return (
     <tr
       key={id}
-      className={`${styles.bookRecord} ${isSelected ? styles["selected"] : ""}`}
+      className={`${styles.bookRecord} ${isisSelected ? styles["isSelected"] : ""}`}
       onClick={() => {
         bookRecordHandler();
       }}
