@@ -1,6 +1,4 @@
 .bookDetails {
   flex: 1;
-
-  max-height: 50vh;
-  overflow: scroll;
+  border-top: 2px dotted white;
 }

@@ -15,7 +15,7 @@ type BookRecordProps = {
   presentRecord: string;
   presentRecordSetter: (id: string) => void;
 };
-
+//TODO: presentRecord to presentRecordId
 export const BookRecord: FC<BookRecordProps> = ({
   id,
   author,
@@ -36,7 +36,7 @@ export const BookRecord: FC<BookRecordProps> = ({
     }
   }, [presentRecord]);
 
-  const bookRecordHandler = async () => {
+  const bookRecordHandler = () => {
     presentAuthorSetter(author);
     presentRecordSetter(id);
   };
@@ -49,11 +49,11 @@ export const BookRecord: FC<BookRecordProps> = ({
         bookRecordHandler();
       }}
     >
-      <td className={styles.item}>{id}</td>
       <td>{author}</td>
       <td>{title}</td>
       <td>{category}</td>
       <td>{publisher}</td>
+      <td className={styles.item}>{id}</td>
     </tr>
   );
 };

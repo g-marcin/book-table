@@ -1,6 +1,7 @@
 import { FC, useContext } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { BookContext } from "../../../contexts/";
+import { Home } from "react-feather";
 import styles from "./subheader.module.css";
 
 export const SubHeader: FC = () => {
@@ -16,8 +17,10 @@ export const SubHeader: FC = () => {
             presentRecordSetter("");
             navigate("/");
           }}
+          className={styles.homeCrumb}
         >
-          Home
+          <span className={styles.bigCrumb}>Home</span>
+          <Home className={styles.smallCrumb} />
         </NavLink>
       }
       {author && (
@@ -28,7 +31,7 @@ export const SubHeader: FC = () => {
       )}
 
       {bookId && (
-        <NavLink to={`/${author}/${bookId}`}>
+        <NavLink to={`/${author}/${bookId}`} className={styles.bookTitleCrumb}>
           {" "}
           {"> "}
           {bookId}

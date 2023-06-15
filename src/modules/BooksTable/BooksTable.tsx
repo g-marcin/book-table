@@ -14,7 +14,7 @@ type BookRecordProps = {
   presentAuthor: string;
   presentAuthorSetter: (presentAuthor: string) => void;
   presentRecord: string;
-  presentRecordSetter: (id: string) => void;
+  presentRecordSetter: (id: string) => void; //TODO : remove to types change name to books
 };
 
 export const BooksTable: FC = () => {
@@ -28,11 +28,11 @@ export const BooksTable: FC = () => {
           <Table variant="dark" striped className={styles["booksTable"]}>
             <thead className={styles.tableHeader}>
               <tr>
-                <th>Book ID</th>
-                <th>Author</th>
-                <th>Title</th>
+                <th style={{ minWidth: "150px" }}>Author</th>
+                <th style={{ minWidth: "150px" }}>Title</th>
                 <th>Category</th>
                 <th>Publisher</th>
+                <th>Book ID</th>
               </tr>
             </thead>
             <tbody className="tableBody">

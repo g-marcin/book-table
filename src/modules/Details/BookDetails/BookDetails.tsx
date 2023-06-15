@@ -5,9 +5,9 @@ import styles from "./bookDetails.module.css";
 export const BookDetails: FC = () => {
   const { bookDescription, bookTitle } = useBookDetails();
   return (
-    <div>
+    <div className={styles["bookDetails"]}>
       <h2>{bookTitle}</h2>
-      <p className={styles["bookDetails"]} dangerouslySetInnerHTML={{ __html: bookDescription }}></p>
+      <p dangerouslySetInnerHTML={{ __html: bookDescription }}></p>
     </div>
   );
 };

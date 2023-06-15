@@ -1,16 +1,18 @@
 import { FC } from "react";
-import { useParams } from "react-router-dom";
-import styles from "./details.module.css";
+import { useParams, Outlet } from "react-router-dom";
 import { AuthorDetails } from "./AuthorDetails";
 import { BookDetails } from "./BookDetails/BookDetails";
 
+import styles from "./details.module.css";
+import { DetailsPlaceholder } from "../../components";
+
 export const Details: FC = () => {
-  const { bookId } = useParams();
+  const { bookId, author } = useParams();
 
   return (
     <div className={styles.mainWrapper}>
-      <AuthorDetails />
-      {bookId && <BookDetails />}
+      {author ? <AuthorDetails /> : <DetailsPlaceholder name={"record"} />}
+      <Outlet />
     </div>
   );
 };

@@ -1,14 +1,18 @@
 thead {
   background: black;
-  height: 100px;
+  height: 30px;
 }
 .tableBody {
   height: 20vh;
 }
+.tableBody:nth-child(1) {
+  background: red;
+}
 .wrapper {
   overflow: scroll;
+  flex: 2;
 }
 .tableHeader {
   color: var(--color);
-  background: var(--background);
+  /* background: var(--background); */
 }

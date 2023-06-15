@@ -5,8 +5,8 @@
 
   display: flex;
   flex-direction: column;
-  flex: 1;
-  max-height: 50vh;
+  flex: 3;
+
   overflow: scroll;
 }
 .detailsItem {
@@ -14,17 +14,10 @@
   justify-content: space-between;
 }
 
-.bookRecord {
-  border-radius: 8px;
-  border: 1px solid;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
 .bookRecord:hover {
+  background: gray;
+  cursor: pointer;
+}
+.selected {
   background: #897e14;
 }
