@@ -1,30 +1,6 @@
-.authorDetails {
-  display: flex;
-  align-self: stretch;
-  justify-self: stretch;
-
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  max-height: 50vh;
-  overflow: scroll;
-}
-
-.detailsItem {
-  display: flex;
-  justify-content: space-between;
-}
-
 .bookDetails {
   flex: 1;
 
   max-height: 50vh;
   overflow: scroll;
-}
-
-.mainWrapper {
-  border: 1px solid white;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
 }

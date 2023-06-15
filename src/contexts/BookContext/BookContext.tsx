@@ -88,7 +88,6 @@ export const BookContextProvider: FC<PropsWithChildren> = ({ children }) => {
   function presentDescriptionSetter(destcription: string) {
     setPresentDescription(destcription);
   }
-
   return (
     <BookContext.Provider
       value={{

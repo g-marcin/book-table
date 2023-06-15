@@ -7,8 +7,8 @@ thead {
 }
 .wrapper {
   overflow: scroll;
-  border: 1px solid white;
 }
 .tableHeader {
-  position: sticky;
+  color: var(--color);
+  background: var(--background);
 }

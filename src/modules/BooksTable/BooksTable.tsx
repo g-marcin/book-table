@@ -24,38 +24,42 @@ export const BooksTable: FC = () => {
   return (
     <>
       <div className={styles["wrapper"]}>
-        <Table variant="dark" striped className={styles["booksTable"]}>
-          <thead className={styles.tableHeader}>
-            <tr>
-              <th> Book ID</th>
-              <th>Author</th>
-              <th>Title</th>
-              <th>Category</th>
-              <th>Publisher</th>
-            </tr>
-          </thead>
-          <tbody className="tableBody">
-            {fetchedBooksData.map(
-              ({ id, author, title, category, publisher, isSelected }: BookRecordProps, index: number) => {
-                return (
-                  <BookRecord
-                    id={id}
-                    author={author}
-                    title={title}
-                    category={category}
-                    publisher={publisher}
-                    presentAuthor={presentAuthor}
-                    presentAuthorSetter={presentAuthorSetter}
-                    presentRecord={presentRecord}
-                    presentRecordSetter={presentRecordSetter}
-                    isSelected={isSelected}
-                    key={index}
-                  />
-                );
-              }
-            )}
-          </tbody>
-        </Table>
+        {fetchedBooksData ? (
+          <Table variant="dark" striped className={styles["booksTable"]}>
+            <thead className={styles.tableHeader}>
+              <tr>
+                <th>Book ID</th>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Publisher</th>
+              </tr>
+            </thead>
+            <tbody className="tableBody">
+              {fetchedBooksData.map(
+                ({ id, author, title, category, publisher, isSelected }: BookRecordProps, index: number) => {
+                  return (
+                    <BookRecord
+                      id={id}
+                      author={author}
+                      title={title}
+                      category={category}
+                      publisher={publisher}
+                      presentAuthor={presentAuthor}
+                      presentAuthorSetter={presentAuthorSetter}
+                      presentRecord={presentRecord}
+                      presentRecordSetter={presentRecordSetter}
+                      isSelected={isSelected}
+                      key={index}
+                    />
+                  );
+                }
+              )}
+            </tbody>
+          </Table>
+        ) : (
+          <div>loading...</div>
+        )}
       </div>
     </>
   );

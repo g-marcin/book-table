@@ -1,6 +1,7 @@
 .main {
   max-height: 88vh;
   display: flex;
+  gap: 10px;
 }
 
 @media (max-width: 660px) {

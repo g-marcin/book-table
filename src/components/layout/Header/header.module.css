@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+
 header {
   background: black;
   color: white;
@@ -6,5 +8,23 @@ header {
   justify-content: space-between;
   height: 50px;
   align-items: center;
-  padding: 0 10px;
+  padding: 5px 20px;
+}
+
+.logoImage {
+  height: 30px;
+  width: 30px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 24px;
+  color: white;
+}
+
+.menu {
+  color: white;
 }
