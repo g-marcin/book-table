@@ -1,9 +1,10 @@
 import { FC } from "react";
 import { Outlet } from "react-router-dom";
 import { BooksTable } from "../../modules";
-import styles from "./Home.module.css";
 
-export const Home: FC = () => {
+import styles from "./booksPage.module.css";
+
+const BooksPage: FC = () => {
   return (
     <main className={styles.main}>
       <BooksTable />
@@ -11,3 +12,5 @@ export const Home: FC = () => {
     </main>
   );
 };
+
+export default BooksPage;

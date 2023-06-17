@@ -1,13 +1,13 @@
-import { BookContextProvider } from "./contexts/BookContext/BookContext";
+import { ThemeContextProvider } from "./contexts";
 import { AppRouter } from "./router";
 import { RouterProvider } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <BookContextProvider>
+      <ThemeContextProvider>
         <RouterProvider router={AppRouter} />
-      </BookContextProvider>
+      </ThemeContextProvider>
     </>
   );
 }

@@ -1,12 +1,12 @@
-import { FC, useContext } from "react";
+import { FC } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { BookContext } from "../../../contexts/";
 import { Home } from "react-feather";
+import { useBookDetails } from "../../../hooks";
 import styles from "./subheader.module.css";
 
 export const SubHeader: FC = () => {
   const { bookId, author } = useParams();
-  const { presentAuthor, presentRecordSetter } = useContext(BookContext);
+  const { bookTitle } = useBookDetails();
   const navigate = useNavigate();
   return (
     <nav className={styles["nav"]}>
@@ -14,27 +14,24 @@ export const SubHeader: FC = () => {
         <NavLink
           to="/"
           onClick={() => {
-            presentRecordSetter("");
             navigate("/");
           }}
           className={styles.homeCrumb}
         >
           <span className={styles.bigCrumb}>Home</span>
-          <Home className={styles.smallCrumb} />
+          <Home className={styles.smallCrumb} size={18} />
         </NavLink>
       }
       {author && (
         <NavLink to={`/${author}`}>
           {"> "}
-          {presentAuthor}
+          {author}
         </NavLink>
       )}
-
       {bookId && (
         <NavLink to={`/${author}/${bookId}`} className={styles.bookTitleCrumb}>
-          {" "}
           {"> "}
-          {bookId}
+          {bookTitle}
         </NavLink>
       )}
     </nav>

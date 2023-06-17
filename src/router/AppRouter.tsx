@@ -1,16 +1,11 @@
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import { Home } from "../pages/Home/Home";
 import { ErrorPage } from "./ErrorPage";
 import { Layout } from "../components/layout";
-import { Details } from "../modules/Details";
-import { BookDetails } from "../modules/Details/BookDetails/BookDetails";
-// const CurrencyDetails = lazy(() => import("../modules/CurrencyDetails/CurrencyDetails"));
-// const CurrencyExchange = lazy(() => import("../modules/CurrencyExchange/CurrencyExchange"));
-
-const Loader = () => {
-  return <div>Loading...</div>;
-};
+import { DetailsPlaceholder, Loader } from "../components";
+const BooksPage = lazy(() => import("../pages/BooksPage/BooksPage"));
+const Details = lazy(() => import("../modules/Details/Details"));
+const BookDetails = lazy(() => import("../modules/Details/BookDetails/BookDetails"));
 
 export const AppRouter = createBrowserRouter([
   {
@@ -19,18 +14,23 @@ export const AppRouter = createBrowserRouter([
     errorElement: <ErrorPage errorMessage="Page not found" />,
     children: [
       {
+        path: "/",
+
         element: (
           <Suspense fallback={<Loader />}>
-            <Home />
+            <BooksPage />
           </Suspense>
         ),
 
         children: [
           {
             path: "/",
-            element: <></>,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <DetailsPlaceholder name={"Author "} />
+              </Suspense>
+            ),
           },
-
           {
             path: "/:author",
             element: (
@@ -40,7 +40,15 @@ export const AppRouter = createBrowserRouter([
             ),
             children: [
               {
-                path: "/:author/:bookId",
+                path: "",
+                element: (
+                  <Suspense fallback={<Loader />}>
+                    <DetailsPlaceholder name={"Book"} />
+                  </Suspense>
+                ),
+              },
+              {
+                path: ":bookId",
                 element: (
                   <Suspense fallback={<Loader />}>
                     <BookDetails />

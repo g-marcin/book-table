@@ -1,4 +1,5 @@
 .bookDetails {
-  flex: 1;
   border-top: 2px dotted white;
+
+  overflow-y: scroll;
 }

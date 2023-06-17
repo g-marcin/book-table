@@ -2,7 +2,7 @@ import { FC } from "react";
 import { useBookDetails } from "../../../hooks";
 import styles from "./bookDetails.module.css";
 
-export const BookDetails: FC = () => {
+const BookDetails: FC = () => {
   const { bookDescription, bookTitle } = useBookDetails();
   return (
     <div className={styles["bookDetails"]}>
@@ -11,3 +11,4 @@ export const BookDetails: FC = () => {
     </div>
   );
 };
+export default BookDetails;

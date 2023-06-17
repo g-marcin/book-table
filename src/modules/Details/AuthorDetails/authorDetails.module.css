@@ -1,23 +1,11 @@
 .authorDetails {
   display: flex;
-  align-self: stretch;
-  justify-self: stretch;
-
-  display: flex;
   flex-direction: column;
-  flex: 3;
-
+  max-height: 60vh;
   overflow: scroll;
-}
-.detailsItem {
-  display: flex;
-  justify-content: space-between;
+  flex: 10;
 }
 
-.bookRecord:hover {
-  background: gray;
-  cursor: pointer;
-}
-.selected {
-  background: #897e14;
+.bookRecord {
+  vertical-align: middle;
 }

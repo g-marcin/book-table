@@ -1,19 +1,23 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AxiosResponse } from "axios";
 import { httpClient } from "../../common";
-import { BookContext } from "../../contexts";
+
+import { useParams } from "react-router-dom";
 
 export const useBookDetails = () => {
-  const { presentDescription } = useContext(BookContext);
   const [bookDescription, setBookDescription] = useState<TrustedHTML>("");
   const [bookTitle, setBookTitle] = useState("");
-
+  const { bookId = "" } = useParams();
   useEffect(() => {
-    httpClient.get(`/volumes/${presentDescription}`).then((response: AxiosResponse) => {
+    if (!bookId) {
+      return;
+    }
+    httpClient.get(`/volumes/${bookId}`).then((response: AxiosResponse) => {
       setBookDescription(response.data.volumeInfo.description);
       setBookTitle(response.data.volumeInfo.title);
+      //volume info
     });
-  }, [presentDescription]);
+  }, [bookId]);
 
   return { bookDescription: bookDescription, bookTitle: bookTitle };
 };

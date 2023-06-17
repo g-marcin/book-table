@@ -1,66 +1,79 @@
-import { FC, useContext } from "react";
+import { FC, useEffect, useState } from "react";
+import { AxiosResponse } from "axios";
+import { httpClient } from "../../common";
 import { Table } from "react-bootstrap";
 import { BookRecord } from "./BookRecord";
+import { fetchedBooksData } from "../../types";
+import { CustomPagination } from "../../components/CustomPagination";
 import styles from "./bookstable.module.css";
-import { BookContext } from "../../contexts/BookContext";
 
-type BookRecordProps = {
+type AuthorData = {
   id: string;
   author: string;
+  language: string;
   title: string;
   category: string;
   publisher: string;
+  image: string;
   isSelected: boolean;
-  presentAuthor: string;
-  presentAuthorSetter: (presentAuthor: string) => void;
-  presentRecord: string;
-  presentRecordSetter: (id: string) => void; //TODO : remove to types change name to books
 };
 
 export const BooksTable: FC = () => {
-  const { fetchedBooksData, presentAuthor, presentAuthorSetter, presentRecord, presentRecordSetter } =
-    useContext(BookContext);
+  const [active, setActive] = useState(1);
+  const setActiveHandler = (page: number) => {
+    setActive(page);
+  };
+  const [fetchedAuthors, setFetchedAuthors] = useState<AuthorData[]>([]);
+
+  useEffect(() => {
+    httpClient.get(`/volumes?q=startIndex=${active}0`).then((response: AxiosResponse) => {
+      const authorsCollection = response.data.items.map((item: fetchedBooksData) => {
+        if (!item.volumeInfo.authors) {
+          return;
+        }
+        if (!item.volumeInfo.publisher) {
+          return;
+        }
+        if (!item.volumeInfo.categories) {
+          return;
+        }
+        if (!item.volumeInfo.imageLinks) {
+          return;
+        }
+        return {
+          id: item.id,
+          author: item.volumeInfo.authors[0],
+          language: item.volumeInfo.language,
+          title: item.volumeInfo.title,
+          category: item.volumeInfo.categories[0],
+          publisher: item.volumeInfo.publisher,
+          image: item.volumeInfo.imageLinks.thumbnail,
+        };
+      });
+      setFetchedAuthors(authorsCollection);
+    });
+  }, [active]);
 
   return (
-    <>
-      <div className={styles["wrapper"]}>
-        {fetchedBooksData ? (
-          <Table variant="dark" striped className={styles["booksTable"]}>
-            <thead className={styles.tableHeader}>
-              <tr>
-                <th style={{ minWidth: "150px" }}>Author</th>
-                <th style={{ minWidth: "150px" }}>Title</th>
-                <th>Category</th>
-                <th>Publisher</th>
-                <th>Book ID</th>
-              </tr>
-            </thead>
-            <tbody className="tableBody">
-              {fetchedBooksData.map(
-                ({ id, author, title, category, publisher, isSelected }: BookRecordProps, index: number) => {
-                  return (
-                    <BookRecord
-                      id={id}
-                      author={author}
-                      title={title}
-                      category={category}
-                      publisher={publisher}
-                      presentAuthor={presentAuthor}
-                      presentAuthorSetter={presentAuthorSetter}
-                      presentRecord={presentRecord}
-                      presentRecordSetter={presentRecordSetter}
-                      isSelected={isSelected}
-                      key={index}
-                    />
-                  );
-                }
-              )}
-            </tbody>
-          </Table>
-        ) : (
-          <div>loading...</div>
-        )}
-      </div>
-    </>
+    <div className={styles["Table__wrapper"]}>
+      {fetchedAuthors ? (
+        <Table striped className={`${styles["booksTable"]} `}>
+          <thead className={styles.tableHeader}>
+            <tr>
+              <th>Author</th>
+              <th>Nationality</th>
+            </tr>
+          </thead>
+          <tbody className="tableBody">
+            {fetchedAuthors.map(({ id, author, language }: AuthorData, index: number) => {
+              return <BookRecord id={id} author={author} language={language} key={index} />;
+            })}
+          </tbody>
+        </Table>
+      ) : (
+        <>loading...</>
+      )}
+      <CustomPagination active={active} setActiveHandler={setActiveHandler} />
+    </div>
   );
 };

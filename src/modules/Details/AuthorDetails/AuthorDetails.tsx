@@ -1,51 +1,58 @@
-import { FC, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { BookContext } from "../../../contexts";
-import { MappedBookObject } from "../../../types";
+import { FC } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Table } from "react-bootstrap";
+import { DetailsPlaceholder } from "../../../components";
 import styles from "./authorDetails.module.css";
 
-export const AuthorDetails: FC = () => {
-  const { fetchedBooksData, presentAuthor, presentDescriptionSetter } = useContext(BookContext);
+type AuthorDetailsProps = {
+  fetchedBooks: {
+    title: string;
+    image: string;
+  }[];
+};
+
+export const AuthorDetails: FC<AuthorDetailsProps> = ({ fetchedBooks }: any) => {
   const navigate = useNavigate();
-  const showBookDetails = (id: string) => {
-    presentDescriptionSetter(id);
-  };
+  const { author, bookId } = useParams();
 
   return (
     <div className={styles["authorDetails"]}>
-      <Table striped className={styles["booksTable"]}>
-        {presentAuthor && (
+      <Table>
+        {author && (
           <thead className={styles.tableHeader}>
             <tr>
-              <th>Title</th>
               <th>Cover</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Publisher</th>
+              <th>Book Id</th>
             </tr>
           </thead>
         )}
-        <tbody className="tableBody">
-          {fetchedBooksData
-            .filter((book: MappedBookObject) => book.author === presentAuthor)
-            .map(({ id, title, image }: any, index: number) => {
+        <tbody>
+          {fetchedBooks.length !== 0 ? (
+            fetchedBooks.map(({ id, author, title, category, publisher, image }: any, index: number) => {
               return (
                 <tr
                   onClick={() => {
-                    showBookDetails(id);
-                    navigate(`/${presentAuthor}/${title}`);
+                    navigate(`/${author}/${id}`);
                   }}
-                  className={styles.bookRecord}
+                  className={`${styles.bookRecord} ${id === bookId ? "table-primary" : ""}`}
+                  key={index}
                 >
-                  <th>
-                    {" "}
-                    <p>{title}</p>
-                  </th>
-                  <th>
-                    {" "}
+                  <td>
                     <img src={image} alt="" />
-                  </th>
+                  </td>
+                  <td>{title}</td>
+                  <td>{category}</td>
+                  <td>{publisher}</td>
+                  <td className={styles.item}>{id}</td>
                 </tr>
               );
-            })}
+            })
+          ) : (
+            <DetailsPlaceholder name={"different author"} />
+          )}
         </tbody>
       </Table>
     </div>

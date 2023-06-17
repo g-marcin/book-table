@@ -10,7 +10,6 @@
   padding: 5px;
   height: 30px;
 }
-
 .isSelected {
-  background: rgba(238, 215, 4, 0.5);
+  background: rgba(238, 215, 4, 0.5) !important;
 }

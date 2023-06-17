@@ -4,12 +4,11 @@
   text-align: center;
   display: flex;
   gap: 5px;
-  height: 20px;
+  height: 25px;
   margin: 2px 0;
   align-items: center;
   padding: 0 10px;
 }
-
 .smallCrumb {
   display: none;
 }
@@ -28,4 +27,8 @@
   .bigCrumb {
     display: none;
   }
+}
+
+a {
+  text-decoration: none !important;
 }

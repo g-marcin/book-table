@@ -1,59 +1,27 @@
-import { FC, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { BookContext } from "../../../contexts/BookContext";
+import { FC } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./bookRecord.module.css";
 
 type BookRecordProps = {
   id: string;
   author: string;
-  title: string;
-  category: string;
-  publisher: string;
-  isSelected: boolean;
-  presentAuthor: string;
-  presentAuthorSetter: (presentAuthor: string) => void;
-  presentRecord: string;
-  presentRecordSetter: (id: string) => void;
+  language: string;
 };
-//TODO: presentRecord to presentRecordId
-export const BookRecord: FC<BookRecordProps> = ({
-  id,
-  author,
-  title,
-  category,
-  publisher,
-  presentAuthorSetter,
 
-  presentRecordSetter,
-}) => {
-  const [isisSelected, setIsisSelected] = useState(false);
+export const BookRecord: FC<BookRecordProps> = ({ id, author, language }) => {
+  const { author: currentAuthor } = useParams();
   const navigate = useNavigate();
-  const { presentAuthor, presentRecord } = useContext(BookContext);
-  useEffect(() => {
-    setIsisSelected(presentRecord === id);
-    if (presentRecord !== "") {
-      navigate(`/${presentAuthor}`);
-    }
-  }, [presentRecord]);
-
-  const bookRecordHandler = () => {
-    presentAuthorSetter(author);
-    presentRecordSetter(id);
-  };
 
   return (
     <tr
       key={id}
-      className={`${styles.bookRecord} ${isisSelected ? styles["isSelected"] : ""}`}
+      className={`${styles.bookRecord} ${currentAuthor === author ? "table-primary" : ""}`}
       onClick={() => {
-        bookRecordHandler();
+        navigate(`/${author}`);
       }}
     >
       <td>{author}</td>
-      <td>{title}</td>
-      <td>{category}</td>
-      <td>{publisher}</td>
-      <td className={styles.item}>{id}</td>
+      <td>{language}</td>
     </tr>
   );
 };

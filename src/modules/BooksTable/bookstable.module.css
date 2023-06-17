@@ -1,18 +1,13 @@
-thead {
-  background: black;
-  height: 30px;
+.Table__wrapper {
+  flex: 1;
+  overflow-x: scroll;
 }
-.tableBody {
-  height: 20vh;
-}
-.tableBody:nth-child(1) {
-  background: red;
-}
-.wrapper {
-  overflow: scroll;
-  flex: 2;
-}
+
 .tableHeader {
   color: var(--color);
-  /* background: var(--background); */
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
 }
