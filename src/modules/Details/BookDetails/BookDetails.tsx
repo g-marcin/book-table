@@ -3,7 +3,7 @@ import { useBookDetails } from "../../../hooks";
 import styles from "./bookDetails.module.css";
 
 const BookDetails: FC = () => {
-  const { bookDescription, bookTitle } = useBookDetails();
+  const { description: bookDescription, title: bookTitle } = useBookDetails();
   return (
     <div className={styles["bookDetails"]}>
       <h2>{bookTitle}</h2>

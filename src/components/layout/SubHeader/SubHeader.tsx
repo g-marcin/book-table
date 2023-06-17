@@ -6,7 +6,7 @@ import styles from "./subheader.module.css";
 
 export const SubHeader: FC = () => {
   const { bookId, author } = useParams();
-  const { bookTitle } = useBookDetails();
+  const { title: bookTitle } = useBookDetails();
   const navigate = useNavigate();
   return (
     <nav className={styles["nav"]}>
