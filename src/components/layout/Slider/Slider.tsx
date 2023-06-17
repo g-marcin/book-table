@@ -1,6 +1,7 @@
-import { FC, useState } from "react";
+import { FC, useContext } from "react";
 import { CSSTransition } from "react-transition-group";
 import { X, Sun, Moon } from "react-feather";
+import { ThemeContext } from "../../../contexts";
 import styles from "./slider.module.css";
 
 type SliderProps = {
@@ -9,9 +10,9 @@ type SliderProps = {
 };
 
 export const Slider: FC<SliderProps> = ({ isOpen, toggleMenu }) => {
-  const [isDark, setIsDark] = useState(false);
+  const { isDark, setIsDark } = useContext(ThemeContext);
   return (
-    <CSSTransition in={isOpen} timeout={0} classNames={styles["menu-transition"]} unmountOnExit>
+    <CSSTransition in={isOpen} timeout={1} classNames={styles["menu-transition"]} unmountOnExit>
       <div className={styles["sliding-menu"]}>
         <button onClick={toggleMenu}>
           <X />
@@ -20,11 +21,10 @@ export const Slider: FC<SliderProps> = ({ isOpen, toggleMenu }) => {
           <li>
             <button
               onClick={() => {
-                setIsDark(!isDark);
-                document.body.setAttribute("data-bs-theme", `${isDark ? "dark" : "light"}`);
+                setIsDark(isDark);
               }}
             >
-              {isDark ? <Moon /> : <Sun />}
+              {isDark ? <Sun /> : <Moon />}
             </button>
           </li>
         </ul>

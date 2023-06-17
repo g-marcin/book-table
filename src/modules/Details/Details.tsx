@@ -1,10 +1,10 @@
 import { FC, useState, useEffect } from "react";
 import { useParams, Outlet } from "react-router-dom";
-import { AuthorDetails } from "./AuthorDetails";
+import { AuthorBooks } from "./AuthorBooks";
 import { DetailsPlaceholder } from "../../components";
-import styles from "./details.module.css";
 import { AxiosResponse } from "axios";
 import { httpClient } from "../../common";
+import styles from "./details.module.css";
 
 const Details: FC = () => {
   const { author } = useParams();
@@ -46,7 +46,7 @@ const Details: FC = () => {
 
   return (
     <div className={styles.mainWrapper}>
-      {author ? <AuthorDetails fetchedBooks={fetchedBooks} /> : <DetailsPlaceholder name={"record"} />}
+      {author ? <AuthorBooks fetchedBooks={fetchedBooks} /> : <DetailsPlaceholder name={"record"} />}
       <Outlet />
     </div>
   );

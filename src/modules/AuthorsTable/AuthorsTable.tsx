@@ -2,10 +2,10 @@ import { FC, useEffect, useState } from "react";
 import { AxiosResponse } from "axios";
 import { httpClient } from "../../common";
 import { Table } from "react-bootstrap";
-import { BookRecord } from "./BookRecord";
+import { AuthorRecord } from "./AuthorRecord";
 import { fetchedBooksData } from "../../types";
 import { CustomPagination } from "../../components/CustomPagination";
-import styles from "./bookstable.module.css";
+import styles from "./authorsTable.module.css";
 
 type AuthorData = {
   id: string;
@@ -18,7 +18,7 @@ type AuthorData = {
   isSelected: boolean;
 };
 
-export const BooksTable: FC = () => {
+export const AuthorsTable: FC = () => {
   const [active, setActive] = useState(1);
   const setActiveHandler = (page: number) => {
     setActive(page);
@@ -61,12 +61,13 @@ export const BooksTable: FC = () => {
           <thead className={styles.tableHeader}>
             <tr>
               <th>Author</th>
-              <th>Nationality</th>
+              <th>Category</th>
+              <th>Language</th>
             </tr>
           </thead>
           <tbody className="tableBody">
-            {fetchedAuthors.map(({ id, author, language }: AuthorData, index: number) => {
-              return <BookRecord id={id} author={author} language={language} key={index} />;
+            {fetchedAuthors.map(({ id, author, language, category }: AuthorData, index: number) => {
+              return <AuthorRecord id={id} author={author} language={language} category={category} key={index} />;
             })}
           </tbody>
         </Table>

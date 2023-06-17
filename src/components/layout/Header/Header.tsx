@@ -10,7 +10,7 @@ export const Header: FC = () => {
     <>
       <header className={styles.header}>
         <a className={styles.logo} href="/">
-          <img src="/kongsberg_logosvg.jpg" alt="" className={styles.logoImage} />
+          <img src="/kongsberg_logo.jpg" alt="" className={styles.logoImage} />
           <span>Kongsberg-table</span>
         </a>
         <button>

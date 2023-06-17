@@ -1,14 +1,15 @@
 import { FC } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import styles from "./bookRecord.module.css";
+import styles from "./authorRecord.module.css";
 
-type BookRecordProps = {
+type AuthorRecordProps = {
   id: string;
   author: string;
   language: string;
+  category: string;
 };
 
-export const BookRecord: FC<BookRecordProps> = ({ id, author, language }) => {
+export const AuthorRecord: FC<AuthorRecordProps> = ({ id, author, language, category }) => {
   const { author: currentAuthor } = useParams();
   const navigate = useNavigate();
 
@@ -21,6 +22,7 @@ export const BookRecord: FC<BookRecordProps> = ({ id, author, language }) => {
       }}
     >
       <td>{author}</td>
+      <td>{category}</td>
       <td>{language}</td>
     </tr>
   );

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { AxiosResponse } from "axios";
 import { httpClient } from "../../common";
-import { useParams } from "react-router-dom";
 
 export const useBookDetails = () => {
   const [bookDetails, setBookDetails] = useState({ title: "", description: "" });

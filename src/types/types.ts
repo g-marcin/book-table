@@ -13,6 +13,5 @@ export type AuthorData = {
   category: string;
   publisher: string;
   image: string;
-
   isSelected: boolean;
 };

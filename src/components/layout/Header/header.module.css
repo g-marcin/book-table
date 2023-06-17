@@ -1,13 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
 
-header {
-  background: black;
-  color: white;
-  text-align: center;
+.header {
+  background: #000000;
+  color: #ffffff;
   display: flex;
   justify-content: space-between;
-  height: 50px;
   align-items: center;
+  height: 50px;
   padding: 5px 20px;
 }
 
@@ -22,7 +21,7 @@ header {
   gap: 5px;
   font-family: "Montserrat", sans-serif !important;
   font-size: 24px;
-  color: white;
+  color: #ffffff;
   text-decoration: none;
 }
 

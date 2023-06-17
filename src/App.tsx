@@ -1,6 +1,6 @@
-import { ThemeContextProvider } from "./contexts";
-import { AppRouter } from "./router";
 import { RouterProvider } from "react-router-dom";
+import { AppRouter } from "./router";
+import { ThemeContextProvider } from "./contexts";
 
 function App() {
   return (
