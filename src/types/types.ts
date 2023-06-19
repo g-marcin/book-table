@@ -4,8 +4,10 @@ export type bookVolumeDTO = {
     author: string;
     category: string;
     language: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [k: string]: any;
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [k: string]: any;
 };
 
@@ -27,5 +29,6 @@ export type BookRecordType = {
 export type BookDetailsType = {
   title: string;
   description: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [k: string]: any;
 };
