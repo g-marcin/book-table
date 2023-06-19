@@ -3,78 +3,50 @@ import { AxiosResponse } from "axios";
 import { httpClient } from "../../common";
 import { Table } from "react-bootstrap";
 import { AuthorRecord } from "./AuthorRecord";
-import { fetchedBooksData } from "../../types";
+import { Loader } from "../../components";
 import { CustomPagination } from "../../components/CustomPagination";
-import styles from "./authorsTable.module.css";
+import { AuthorRecordType } from "../../types";
+import { authorDataMapper } from "../mappers";
 
-type AuthorData = {
-  id: string;
-  author: string;
-  language: string;
-  title: string;
-  category: string;
-  publisher: string;
-  image: string;
-  isSelected: boolean;
+const styles = {
+  wrapper: "",
 };
 
 export const AuthorsTable: FC = () => {
-  const [active, setActive] = useState(1);
-  const setActiveHandler = (page: number) => {
-    setActive(page);
+  const [page, setPage] = useState<number>(1);
+  const setPageHandler = (page: number) => {
+    setPage(page);
   };
-  const [fetchedAuthors, setFetchedAuthors] = useState<AuthorData[]>([]);
-
+  const [fetchedAuthors, setFetchedAuthors] = useState<AuthorRecordType[]>([]);
   useEffect(() => {
-    httpClient.get(`/volumes?q=startIndex=${active}0`).then((response: AxiosResponse) => {
-      const authorsCollection = response.data.items.map((item: fetchedBooksData) => {
-        if (!item.volumeInfo.authors) {
-          return;
-        }
-        if (!item.volumeInfo.publisher) {
-          return;
-        }
-        if (!item.volumeInfo.categories) {
-          return;
-        }
-        if (!item.volumeInfo.imageLinks) {
-          return;
-        }
-        return {
-          id: item.id,
-          author: item.volumeInfo.authors[0],
-          language: item.volumeInfo.language,
-          title: item.volumeInfo.title,
-          category: item.volumeInfo.categories[0],
-          publisher: item.volumeInfo.publisher,
-          image: item.volumeInfo.imageLinks.thumbnail,
-        };
-      });
-      setFetchedAuthors(authorsCollection);
+    httpClient.get(`/volumes?q=startIndex=${page - 1}0`).then((response: AxiosResponse) => {
+      setFetchedAuthors(authorDataMapper(response.data.items));
     });
-  }, [active]);
+  }, [page]);
 
   return (
-    <div className={styles["Table__wrapper"]}>
-      {fetchedAuthors ? (
-        <Table striped className={`${styles["booksTable"]} `}>
-          <thead className={styles.tableHeader}>
-            <tr>
-              <th>Author</th>
-              <th>Category</th>
-              <th>Language</th>
-            </tr>
-          </thead>
-          <tbody className="tableBody">
-            {fetchedAuthors.map(({ id, author, language, category }: AuthorData, index: number) => {
-              return <AuthorRecord id={id} author={author} language={language} category={category} key={index} />;
-            })}
-          </tbody>
-        </Table>
+    <div className={styles.wrapper}>
+      {fetchedAuthors.length > 0 ? (
+        <>
+          <Table>
+            <thead>
+              <tr>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Language</th>
+              </tr>
+            </thead>
+            <tbody>
+              {fetchedAuthors.map(({ id, author, language, category }: AuthorRecordType) => {
+                return <AuthorRecord author={author} language={language} category={category} key={id} />;
+              })}
+            </tbody>
+          </Table>
+          <CustomPagination page={page} setPageHandler={setPageHandler} />
+        </>
       ) : (
-        <>loading...</>
+        <Loader />
       )}
-      <CustomPagination active={active} setActiveHandler={setActiveHandler} />
     </div>
   );
 };
