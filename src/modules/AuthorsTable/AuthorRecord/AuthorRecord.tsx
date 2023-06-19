@@ -27,6 +27,7 @@ export const AuthorRecord: FC<AuthorRecordProps> = ({ author, language, category
       onMouseOut={() => {
         setMouseOver(false);
       }}
+      role="author-record"
     >
       <td>{author}</td>
       <td>{category}</td>

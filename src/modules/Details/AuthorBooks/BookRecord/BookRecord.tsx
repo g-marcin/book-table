@@ -27,6 +27,7 @@ export const BookRecord: FC<BookRecordProps> = ({ id, image, title, category, pu
         setMouseOver(false);
       }}
       className={`${styles.bookRecord} ${id === bookId ? "table-primary" : ""} ${mouseOver ? "table-secondary" : ""}`}
+      role="book-record"
     >
       <td>
         <img src={image} alt="" />

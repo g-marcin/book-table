@@ -30,7 +30,7 @@ export const AuthorsTable: FC = () => {
         <>
           <Table>
             <thead>
-              <tr>
+              <tr role="table-header">
                 <th>Author</th>
                 <th>Category</th>
                 <th>Language</th>
