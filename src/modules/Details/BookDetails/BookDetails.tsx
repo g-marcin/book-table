@@ -8,7 +8,7 @@ const BookDetails: FC = () => {
   return (
     <>
       {bookDetails.description ? (
-        <div className={styles["bookDetails"]}>
+        <div className={styles.bookDetails}>
           <>
             <h2>{bookDetails.title}</h2>
             <p dangerouslySetInnerHTML={{ __html: bookDetails.description }}></p>

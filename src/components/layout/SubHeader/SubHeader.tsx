@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { Home } from "react-feather";
 import { useBookDetails } from "../../../hooks";
@@ -10,7 +10,7 @@ export const SubHeader: FC = () => {
   const { title: bookTitle = "" } = useBookDetails();
   const navigate = useNavigate();
   return (
-    <nav className={`${styles["nav"]} text-decoration-none`}>
+    <nav className={`${styles.nav} text-decoration-none`}>
       {
         <NavLink
           to="/"

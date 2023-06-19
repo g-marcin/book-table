@@ -10,7 +10,7 @@ type AuthorBooksProps = {
 
 export const AuthorBooks: FC<AuthorBooksProps> = ({ fetchedBooks }) => {
   return (
-    <div className={styles["authorDetails"]}>
+    <div className={styles.authorDetails}>
       <Table role="author-books">
         <thead className={styles.tableHeader}>
           <tr>
