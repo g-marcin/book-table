@@ -1,17 +1,31 @@
-export type MappedBookObject = {
-  [k: string]: string;
-};
-
-export type fetchedBooksData = {
+export type bookVolumeDTO = {
+  id: string;
+  volumeInfo: {
+    author: string;
+    category: string;
+    language: string;
+    [k: string]: any;
+  };
   [k: string]: any;
 };
 
-export type AuthorData = {
+export type AuthorRecordType = {
   id: string;
   author: string;
+  language: string;
+  category: string;
+};
+
+export type BookRecordType = {
+  id: string;
   title: string;
   category: string;
   publisher: string;
   image: string;
-  isSelected: boolean;
+};
+
+export type BookDetailsType = {
+  title: string;
+  description: string;
+  [k: string]: any;
 };
