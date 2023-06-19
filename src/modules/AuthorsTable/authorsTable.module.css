@@ -1,13 +1,15 @@
-.Table__wrapper {
-  flex: 2;
-  overflow-x: scroll;
-}
-
-.tableHeader {
-  color: var(--color);
-}
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  justify-self: center;
+  justify-content: space-between;
+}
+@media (max-width: 660px) {
+  .Table__wrapper {
+    align-content: start;
+  }
+  .wrapper {
+    font-size: 15px;
+    overflow-y: scroll;
+  }
 }

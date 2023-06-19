@@ -1,7 +1,7 @@
 import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { ErrorPage } from "./ErrorPage";
-import { Layout, DetailsPlaceholder, Loader } from "../components";
+import { Layout, Loader } from "../components";
 const BooksPage = lazy(() => import("../pages/BooksPage/BooksPage"));
 const Details = lazy(() => import("../modules/Details/Details"));
 const BookDetails = lazy(() => import("../modules/Details/BookDetails/BookDetails"));

@@ -1,14 +1,3 @@
-.main {
-  min-height: 88vh;
-  display: flex;
-  gap: 10px;
-}
-
-@media (max-width: 660px) {
-  .main {
-    display: flex;
-    flex-direction: column-reverse;
-    margin-right: 15px;
-    max-height: none;
-  }
+.line {
+  border: 2px solid black;
 }

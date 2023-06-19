@@ -8,7 +8,7 @@ type ThemeContextType = {
 export const ThemeContext = createContext<ThemeContextType>({
   isDark: true,
   setIsDark: (isDark: boolean) => {
-    return;
+    return isDark;
   },
 });
 export const ThemeContextProvider: FC<PropsWithChildren> = ({ children }) => {

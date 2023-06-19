@@ -1,4 +1,9 @@
 .bookDetails {
-  border-top: 2px dotted white;
+  flex: 2;
+  max-height: 300px;
+
   overflow-y: scroll;
+}
+.center {
+  margin: auto;
 }

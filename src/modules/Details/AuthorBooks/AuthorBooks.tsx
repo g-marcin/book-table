@@ -1,19 +1,17 @@
 import { FC } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Table } from "react-bootstrap";
 import { DetailsPlaceholder } from "../../../components";
+import { BookRecord } from "./BookRecord";
+import { BookRecordType } from "../../../types";
 import styles from "./authorBooks.module.css";
 
 type AuthorBooksProps = {
-  fetchedBooks: {
-    title: string;
-    image: string;
-  }[];
+  fetchedBooks: BookRecordType[];
 };
 
-export const AuthorBooks: FC<AuthorBooksProps> = ({ fetchedBooks }: any) => {
-  const navigate = useNavigate();
-  const { author, bookId } = useParams();
+export const AuthorBooks: FC<AuthorBooksProps> = ({ fetchedBooks }) => {
+  const { author } = useParams();
 
   return (
     <div className={styles["authorDetails"]}>
@@ -32,24 +30,8 @@ export const AuthorBooks: FC<AuthorBooksProps> = ({ fetchedBooks }: any) => {
           <DetailsPlaceholder name={"author"} />
         )}
         <tbody>
-          {fetchedBooks.map(({ id, author, title, category, publisher, image }: any, index: number) => {
-            return (
-              <tr
-                onClick={() => {
-                  navigate(`/${author}/${id}`);
-                }}
-                className={`${styles.bookRecord} ${id === bookId ? "table-primary" : ""}`}
-                key={index}
-              >
-                <td>
-                  <img src={image} alt="" />
-                </td>
-                <td>{title}</td>
-                <td>{category}</td>
-                <td>{publisher}</td>
-                <td className={styles.item}>{id}</td>
-              </tr>
-            );
+          {fetchedBooks.map(({ id, title, category, publisher, image }: BookRecordType) => {
+            return <BookRecord key={id} id={id} title={title} category={category} publisher={publisher} image={image} />;
           })}
         </tbody>
       </Table>

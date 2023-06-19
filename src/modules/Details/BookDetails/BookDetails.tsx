@@ -1,23 +1,25 @@
 import { FC } from "react";
 import { useBookDetails } from "../../../hooks";
-import { useParams } from "react-router-dom";
+import { Loader } from "../../../components";
 import styles from "./bookDetails.module.css";
-import { DetailsPlaceholder } from "../../../components";
 
 const BookDetails: FC = () => {
-  const { description: bookDescription, title: bookTitle } = useBookDetails();
-  const { author, bookId } = useParams();
+  const bookDetails = useBookDetails();
   return (
-    <div className={styles["bookDetails"]}>
-      {bookId ? (
-        <>
-          <h2>{bookTitle}</h2>
-          <p dangerouslySetInnerHTML={{ __html: bookDescription }}></p>
-        </>
+    <>
+      {bookDetails.description ? (
+        <div className={styles["bookDetails"]}>
+          <>
+            <h2>{bookDetails.title}</h2>
+            <p dangerouslySetInnerHTML={{ __html: bookDetails.description }}></p>
+          </>
+        </div>
       ) : (
-        <DetailsPlaceholder name={"book"} />
+        <div className={styles.center}>
+          <Loader />
+        </div>
       )}
-    </div>
+    </>
   );
 };
 export default BookDetails;
