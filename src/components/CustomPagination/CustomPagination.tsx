@@ -4,20 +4,20 @@ import Pagination from "react-bootstrap/Pagination";
 import "bootstrap/dist/css/bootstrap.css";
 
 type customPaginationProps = {
-  active: number;
-  setActiveHandler: (page: number) => void;
+  page: number;
+  setPageHandler: (page: number) => void;
 };
 
-export const CustomPagination: FC<customPaginationProps> = ({ active, setActiveHandler }) => {
+export const CustomPagination: FC<customPaginationProps> = ({ page, setPageHandler }) => {
   const items = [];
-  for (let number = 1; number <= 4; number++) {
+  for (let number = 1; number <= 10; number++) {
     items.push(
       <Pagination.Item
         onClick={() => {
-          setActiveHandler(number);
+          setPageHandler(number);
         }}
         key={number}
-        active={number === active}
+        active={number === page}
       >
         {number}
       </Pagination.Item>
@@ -27,7 +27,6 @@ export const CustomPagination: FC<customPaginationProps> = ({ active, setActiveH
   return (
     <div className={styles.pagination}>
       <Pagination size="sm">{items}</Pagination>
-      <br />
     </div>
   );
 };

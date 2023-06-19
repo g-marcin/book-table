@@ -3,11 +3,10 @@
   display: flex;
   gap: 10px;
 }
-
-@media (max-width: 660px) {
+@media (max-width: 960px) {
   .main {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     margin-right: 15px;
     max-height: none;
   }

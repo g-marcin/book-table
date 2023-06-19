@@ -5,7 +5,7 @@ type DetailsPlaceholderProps = {
   name: string;
 };
 
-export const DetailsPlaceholder: FC<DetailsPlaceholderProps> = ({ name }: { name: string }) => {
+export const DetailsPlaceholder: FC<DetailsPlaceholderProps> = ({ name }) => {
   return (
     <div className={styles.placeholder}>
       <p>Please choose different {name ? name : "data"}...</p>
