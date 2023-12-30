@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 7;
+  gap: 10px;
+}
+
+.center {
+  margin: auto;
+}
+
+.line {
+  border: 2px solid black;
+}
