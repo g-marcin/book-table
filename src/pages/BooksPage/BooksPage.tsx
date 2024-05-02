@@ -5,11 +5,11 @@ import styles from "./booksPage.module.css";
 
 const BooksPage: FC = () => {
   return (
-    <>
+    <div className={styles.booksPageWrapper}>
       <AuthorsTable />
-      <div className={styles.line}></div>
       <Outlet />
-    </>
+      <div className={styles.line}></div>
+    </div>
   );
 };
 

@@ -9,5 +9,11 @@
     flex-direction: column;
     margin-right: 15px;
     max-height: none;
+    padding: 5px;
   }
+}
+
+.Page  {
+
+  padding: 3px;
 }

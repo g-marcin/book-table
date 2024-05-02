@@ -1,3 +1,11 @@
 .line {
   border: 2px solid black;
 }
+
+.booksPageWrapper {
+  display: flex;
+  
+  @media (max-width: 660px) {
+   display: block;
+  }
+}

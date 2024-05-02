@@ -9,7 +9,7 @@ export const Loader: FC = () => {
   }, []);
 
   return (
-    <div className={styles.animationContainer}>
+    <div className={`${styles.animationContainer} ${styles.loaderBox}`}>
       {isTimeout ? <div>No description available</div> : <LoaderIcon className={styles.rotate} size={64} />}
     </div>
   );
