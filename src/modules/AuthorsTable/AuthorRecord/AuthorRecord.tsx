@@ -29,9 +29,9 @@ export const AuthorRecord: FC<AuthorRecordProps> = ({ author, language, category
       }}
       role="author-record"
     >
-      <td>{author}</td>
-      <td>{category}</td>
-      <td>{language}</td>
+      <td className={styles.cell}>{author}</td>
+      {/* <td className={styles.cell}>{category}</td> */}
+      {/* <td className={styles.cell}>{language}</td> */}
     </tr>
   );
 };

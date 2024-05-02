@@ -14,4 +14,8 @@
 .animationContainer {
   align-self: center;
   justify-self: center;
+  padding: 25px;
+  height: inherit;
 }
+
+

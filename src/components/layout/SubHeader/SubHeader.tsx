@@ -1,14 +1,21 @@
 import { FC } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { Home } from "react-feather";
-import { useBookDetails } from "../../../hooks";
+import { useBookDetails, useWindowInnerWidth } from "../../../hooks";
 import styles from "./subheader.module.css";
 
 export const SubHeader: FC = () => {
   const { bookId, author } = useParams();
 
   const { title: bookTitle = "" } = useBookDetails();
+  const innerWidth = useWindowInnerWidth();
   const navigate = useNavigate();
+
+  const truncate = (str: string, n: number) => {
+    return str.length > n ? str.substr(0, n - 1) + "..." : str;
+  }
+
+  
   return (
     <nav className={`${styles.nav} text-decoration-none`}>
       {
@@ -26,13 +33,13 @@ export const SubHeader: FC = () => {
       {author && (
         <NavLink to={`/${author}`} className={`${styles.authorCrumb} text-decoration-none`}>
           {"> "}
-          {author}
+          {innerWidth<660 ? truncate(author, 20) : author}
         </NavLink>
       )}
       {bookId && (
         <NavLink to={`/${author}/${bookId}`} className={`${styles.bookTitleCrumb} text-decoration-none`}>
           {"> "}
-          {bookTitle}
+          {innerWidth<660 ? truncate(bookTitle, 20) : bookTitle}
         </NavLink>
       )}
     </nav>

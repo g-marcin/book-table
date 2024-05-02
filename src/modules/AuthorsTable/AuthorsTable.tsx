@@ -7,33 +7,36 @@ import { Loader } from "../../components";
 import { CustomPagination } from "../../components/CustomPagination";
 import { AuthorRecordType } from "../../types";
 import { authorDataMapper } from "../mappers";
+import styles from "./authorsTable.module.css";
 
-const styles = {
-  wrapper: "",
-};
 
 export const AuthorsTable: FC = () => {
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useState<number>(2);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const setPageHandler = (page: number) => {
     setPage(page);
   };
   const [fetchedAuthors, setFetchedAuthors] = useState<AuthorRecordType[]>([]);
   useEffect(() => {
+    setIsLoading(true);
     httpClient.get(`/volumes?q=startIndex=${page - 1}0`).then((response: AxiosResponse) => {
       setFetchedAuthors(authorDataMapper(response.data.items));
     });
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   }, [page]);
 
   return (
     <div className={styles.wrapper}>
-      {fetchedAuthors.length > 0 ? (
         <>
+      {isLoading ? <Loader /> : (
           <Table>
             <thead>
               <tr role="table-header">
                 <th>Author</th>
-                <th>Category</th>
-                <th>Language</th>
+                {/* <th>Category</th> */}
+                {/* <th>Language</th> */}
               </tr>
             </thead>
             <tbody>
@@ -42,11 +45,9 @@ export const AuthorsTable: FC = () => {
               })}
             </tbody>
           </Table>
+        )}
           <CustomPagination page={page} setPageHandler={setPageHandler} />
         </>
-      ) : (
-        <Loader />
-      )}
     </div>
   );
 };

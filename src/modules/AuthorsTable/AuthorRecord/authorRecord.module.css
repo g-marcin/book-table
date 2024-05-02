@@ -2,10 +2,17 @@
   cursor: pointer;
   overflow-x: scroll;
 }
+
 .item {
   padding: 5px;
   height: 30px;
 }
+
 td {
-  max-width: 300px;
+  /* max-width: 300px; */
+}
+
+.cell {
+  width: 100px;
+  padding: 20px;
 }

@@ -3,6 +3,14 @@
   flex-direction: column;
   justify-self: center;
   justify-content: space-between;
+  width: fit-content;
+  min-height: 400px;
+
+  @media (max-width: 660px) {
+    width: 100%;
+    
+  }
+
 }
 @media (max-width: 660px) {
   .Table__wrapper {
