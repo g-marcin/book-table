@@ -1,12 +1,10 @@
 import { FC, useState } from "react";
-import { Menu } from "react-feather";
 import { Slider } from "../Slider";
 import { SubHeader } from "../SubHeader";
-import { Link } from "react-router-dom";
 import styles from "./header.module.css";
-import SvgBook from "../../../assets/images/SvgBook";
 import { Logo } from "../Logo";
 import { Hamburger } from "../Hamburger";
+import { Backdrop } from "../Slider/Backdrop";
 
 export const Header: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,6 +19,7 @@ export const Header: FC = () => {
             setIsMenuOpen(false);
           }}
         />
+        <Backdrop isOpen={isMenuOpen} setIsOpen={setIsMenuOpen}/>
       </header>
       <SubHeader />
     </>
