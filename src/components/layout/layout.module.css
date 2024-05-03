@@ -1,19 +1,12 @@
 .main {
-  min-height: 88vh;
-  display: flex;
-  gap: 10px;
+
 }
 @media (max-width: 960px) {
   .main {
-    display: flex;
+   /* display: flex;
     flex-direction: column;
     margin-right: 15px;
     max-height: none;
-    padding: 5px;
+    padding: 5px; */
   }
-}
-
-.Page  {
-  padding: 3px;
-  position: absolute;
 }

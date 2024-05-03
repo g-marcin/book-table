@@ -34,8 +34,8 @@ export const BookRecord: FC<BookRecordProps> = ({ id, image, title, category, pu
       </td>
       <td>{title}</td>
       <td>{category}</td>
-      <td>{publisher}</td>
-      <td className={styles.item}>{id}</td>
+      <td className={`${styles.desktop}`}>{publisher}</td>
+      <td className={`${styles.desktop}`} >{id}</td>
     </tr>
   );
 };

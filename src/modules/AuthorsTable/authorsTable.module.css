@@ -1,22 +1,17 @@
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-self: center;
-  justify-content: space-between;
-  width: fit-content;
-  min-height: 400px;
-
-  @media (max-width: 660px) {
-    width: 100%; 
-  }
-
+  min-height: 350px;
 }
+
 @media (max-width: 660px) {
   .Table__wrapper {
     align-content: start;
   }
   .wrapper {
-    font-size: 15px;
+    font-size: 12px;
     overflow-y: scroll;
   }
+}
+
+.authorsTable {
+  min-height: 300px;
 }

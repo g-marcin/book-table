@@ -55,9 +55,7 @@ export const CustomPagination: FC<customPaginationProps> = ({ page, setPageHandl
   return (
     <div className={styles.pagination}>
       <ArrowButton side="left" onClickHandler={pageDown} />
-      
       <Pagination size="sm">{items}</Pagination>
-      
       <ArrowButton side="right" onClickHandler={pageUp} />
     </div>
   );
