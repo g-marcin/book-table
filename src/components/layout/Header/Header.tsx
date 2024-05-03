@@ -12,7 +12,7 @@ export const Header: FC = () => {
     <>
       <header className={styles.header}>
         <Link className={styles.logo} to="/">
-          <SvgBook fill={'white'} width={75} height={35}/>
+          <SvgBook fill={'white'} width={35} height={35}/>
           <span className="text-decoration-none">book-table</span>
         </Link>
         <button
