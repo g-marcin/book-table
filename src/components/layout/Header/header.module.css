@@ -9,23 +9,4 @@
   height: 50px;
   padding: 10px 
 }
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 24px;
-  color: #ffffff;
-  text-decoration: none;
-}
 
-.logoImage {
-  height: 30px;
-  width: 30px;
-}
-
-@media (max-width: 450px) {
-  .logo {
-    font-size: 18px;
-  }
-}
