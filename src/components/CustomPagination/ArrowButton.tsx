@@ -1,8 +1,8 @@
-import React, { FC } from 'react'
+import { FC, MouseEvent } from 'react'
 
 interface ArrowButtonProps {
     side: 'left' | 'right' | 'up' | 'down' 
-    onClickHandler: () => void | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
+    onClickHandler: () => void | ((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)
 }
 
 const arrowDirection = {
