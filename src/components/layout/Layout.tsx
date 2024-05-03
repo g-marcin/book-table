@@ -6,12 +6,10 @@ import styles from "./layout.module.css";
 
 export const Layout: FC = () => {
   return (
-    <>
+    <div className={styles.Page}>
       <Header />
-      <main className={styles.main}>
         <Outlet />
-      </main>
-      <Footer />
-    </>
+      {/* <Footer /> */}
+    </div>
   );
 };

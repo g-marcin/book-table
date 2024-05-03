@@ -4,11 +4,9 @@ import styles from "./authorRecord.module.css";
 
 type AuthorRecordProps = {
   author: string;
-  language: string;
-  category: string;
 };
 
-export const AuthorRecord: FC<AuthorRecordProps> = ({ author, language, category }) => {
+export const AuthorRecord: FC<AuthorRecordProps> = ({ author }) => {
   const { author: routeAuthor } = useParams();
   const [mouseOver, setMouseOver] = useState(false);
   const navigate = useNavigate();
@@ -30,8 +28,6 @@ export const AuthorRecord: FC<AuthorRecordProps> = ({ author, language, category
       role="author-record"
     >
       <td className={styles.cell}>{author}</td>
-      {/* <td className={styles.cell}>{category}</td> */}
-      {/* <td className={styles.cell}>{language}</td> */}
     </tr>
   );
 };

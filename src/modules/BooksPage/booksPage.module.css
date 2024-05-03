@@ -4,8 +4,5 @@
 
 .booksPageWrapper {
   display: flex;
-  
-  @media (max-width: 660px) {
-   display: block;
-  }
+  padding: 10px;
 }

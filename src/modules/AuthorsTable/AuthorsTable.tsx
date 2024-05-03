@@ -11,32 +11,35 @@ import styles from "./authorsTable.module.css";
 
 
 export const AuthorsTable: FC = () => {
-  const [page, setPage] = useState<number>(2);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   const setPageHandler = (page: number) => {
     setPage(page);
   };
   const [fetchedAuthors, setFetchedAuthors] = useState<AuthorRecordType[]>([]);
   useEffect(() => {
+    const result: AuthorRecordType[] = []
     setIsLoading(true);
     httpClient.get(`/volumes?q=startIndex=${page - 1}0`).then((response: AxiosResponse) => {
-      setFetchedAuthors(authorDataMapper(response.data.items));
+      result.push(...authorDataMapper(response.data.items))
     });
+    httpClient.get(`/volumes?q=startIndex=${page}0`).then((response: AxiosResponse) => {
+      result.push(...authorDataMapper(response.data.items))
+    });
+    setFetchedAuthors(result);
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
   }, [page]);
 
   return (
-    <div className={styles.wrapper}>
-        <>
+    <>
+     <div className={styles.wrapper}>      
       {isLoading ? <Loader /> : (
-          <Table>
+          <Table className={styles.authorsTable}>
             <thead>
               <tr role="table-header">
                 <th>Author</th>
-                {/* <th>Category</th> */}
-                {/* <th>Language</th> */}
               </tr>
             </thead>
             <tbody>
@@ -47,7 +50,8 @@ export const AuthorsTable: FC = () => {
           </Table>
         )}
           <CustomPagination page={page} setPageHandler={setPageHandler} />
-        </>
     </div>
+    </>
+   
   );
 };

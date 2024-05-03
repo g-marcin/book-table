@@ -17,8 +17,8 @@ export const AuthorBooks: FC<AuthorBooksProps> = ({ fetchedBooks }) => {
             <th>Cover</th>
             <th>Title</th>
             <th>Category</th>
-            <th>Publisher</th>
-            <th>Book Id</th>
+            <th className={styles.desktop}>Publisher</th>
+            <th className={styles.desktop}>Book Id</th>
           </tr>
         </thead>
 
