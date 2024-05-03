@@ -43,8 +43,8 @@ export const AuthorsTable: FC = () => {
               </tr>
             </thead>
             <tbody>
-              {fetchedAuthors.map(({ id, author, language, category }: AuthorRecordType) => {
-                return <AuthorRecord author={author} language={language} category={category} key={id} />;
+              {fetchedAuthors.map(({ id, author}: AuthorRecordType) => {
+                return <AuthorRecord author={author}  key={id} />;
               })}
             </tbody>
           </Table>
