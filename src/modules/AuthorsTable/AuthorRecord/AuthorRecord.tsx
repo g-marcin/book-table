@@ -4,11 +4,9 @@ import styles from "./authorRecord.module.css";
 
 type AuthorRecordProps = {
   author: string;
-  language: string;
-  category: string;
 };
 
-export const AuthorRecord: FC<AuthorRecordProps> = ({ author, language, category }) => {
+export const AuthorRecord: FC<AuthorRecordProps> = ({ author }) => {
   const { author: routeAuthor } = useParams();
   const [mouseOver, setMouseOver] = useState(false);
   const navigate = useNavigate();
