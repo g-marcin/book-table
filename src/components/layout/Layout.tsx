@@ -9,7 +9,7 @@ export const Layout: FC = () => {
     <div className={styles.Page}>
       <Header />
         <Outlet />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
