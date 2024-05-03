@@ -28,8 +28,6 @@ export const AuthorRecord: FC<AuthorRecordProps> = ({ author }) => {
       role="author-record"
     >
       <td className={styles.cell}>{author}</td>
-      {/* <td className={styles.cell}>{category}</td> */}
-      {/* <td className={styles.cell}>{language}</td> */}
     </tr>
   );
 };
