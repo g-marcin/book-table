@@ -1,7 +1,8 @@
 import { FC } from "react";
-
 interface SvgBookProps {
-  fill: string;
+  fill?: string;
+  width?: number;
+  height?: number;
 }
 
 export const SvgBook:FC<SvgBookProps> = (props) => (

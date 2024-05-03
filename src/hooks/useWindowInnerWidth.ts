@@ -1,9 +1,9 @@
-import React from "react";
+import {useState, useEffect} from "react";
  
 export const useWindowInnerWidth = () => {
-    const [innerWidth, setInnerWidth] = React.useState(window.innerWidth);
+    const [innerWidth, setInnerWidth] = useState(window.innerWidth);
     
-    React.useEffect(() => {
+    useEffect(() => {
         const handleResize = () => {
         setInnerWidth(window.innerWidth);
         };
