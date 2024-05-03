@@ -4,6 +4,7 @@ import { Slider } from "../Slider";
 import { SubHeader } from "../SubHeader";
 import { Link } from "react-router-dom";
 import styles from "./header.module.css";
+import SvgBook from "../../../assets/images/SvgBook";
 
 export const Header: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,8 +12,8 @@ export const Header: FC = () => {
     <>
       <header className={styles.header}>
         <Link className={styles.logo} to="/">
-          <img src="/kongsberg_logo.jpg" alt="logo" className={styles.logoImage} />
-          <span className="text-decoration-none">Kongsberg-table</span>
+          <SvgBook fill={'white'} width={75} height={35}/>
+          <span className="text-decoration-none">book-table</span>
         </Link>
         <button
           onClick={() => {
