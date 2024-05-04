@@ -7,7 +7,7 @@
     "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "Node",
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
@@ -23,7 +23,7 @@
         "@hooks/*": ["src/hooks/*"]
       },
   },
-  "include": ["src", "build.staticHtml.jsx"],
-  "references": [{ "path": "./tsconfig.node.json" }],
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"],
   
 }

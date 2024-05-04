@@ -54,13 +54,6 @@ export default {
       preventAssignment: true,
     }),
     terser(),
-    // nodePolyfills({
-    //   include: ['node_modules/**'],
-    //   polyfills: {
-    //     stream: true,
-    //     util: true,
-    //   },
-    // }),
   ]
   
 };
