@@ -3,12 +3,14 @@ import { Table } from "react-bootstrap";
 import { BookRecord } from "./BookRecord";
 import { BookRecordType } from "../../../types";
 import styles from "./authorBooks.module.css";
+import { useWindowInnerWidth } from "@hooks/index";
 
 type AuthorBooksProps = {
   fetchedBooks: BookRecordType[];
 };
 
 export const AuthorBooks: FC<AuthorBooksProps> = ({ fetchedBooks }) => {
+  const innerWidth = useWindowInnerWidth();
   return (
     <div className={styles.authorDetails}>
       <Table role="author-books">
@@ -17,8 +19,12 @@ export const AuthorBooks: FC<AuthorBooksProps> = ({ fetchedBooks }) => {
             <th>Cover</th>
             <th>Title</th>
             <th>Category</th>
-            <th className={styles.desktop}>Publisher</th>
-            <th className={styles.desktop}>Book Id</th>
+            {innerWidth > 768 && (
+              <>
+                <th>Publisher</th>
+                <th>ID</th>
+              </>
+            )}
           </tr>
         </thead>
 
