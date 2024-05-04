@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./bookRecord.module.css";
+import { useWindowInnerWidth } from "@hooks/index";
 
 type BookRecordProps = {
   id: string;
@@ -14,6 +15,7 @@ export const BookRecord: FC<BookRecordProps> = ({ id, image, title, category, pu
   const navigate = useNavigate();
   const { author, bookId } = useParams();
   const [mouseOver, setMouseOver] = useState(false);
+  const innerWidth = useWindowInnerWidth();
 
   return (
     <tr
@@ -30,12 +32,20 @@ export const BookRecord: FC<BookRecordProps> = ({ id, image, title, category, pu
       role="book-record"
     >
       <td>
-        <img src={image} alt="" />
+        <img src={image} alt={`${title}-image`} />
       </td>
       <td>{title}</td>
       <td>{category}</td>
-      <td className={`${styles.desktop}`}>{publisher}</td>
-      <td className={`${styles.desktop}`} >{id}</td>
+      {innerWidth > 768 && (
+        <>      
+        <td>{publisher}</td>
+        <td>{id}</td>
+        </>
+      )}
     </tr>
   );
 };
+
+
+
+
