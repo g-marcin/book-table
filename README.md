@@ -7,8 +7,11 @@ run locally
 3  npm run dev
 
 run with docker 
+npm run dev:docker
 docker run -p 5000:5000 ggmarcin/book-table
+app is available on localhost:5000
 
 run with docker-compose
 docker-compose up
+app is available on localhost:5001
 
