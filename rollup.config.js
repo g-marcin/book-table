@@ -7,8 +7,8 @@ import html from '@rollup/plugin-html';
 import resolve from '@rollup/plugin-node-resolve';
 
 import replace from '@rollup/plugin-replace';
-import { terser } from 'rollup-plugin-terser';
-import styles from 'rollup-plugin-styles';
+import terser from '@rollup/plugin-terser';
+import postcss from 'rollup-plugin-postcss';
 
 
 
@@ -39,8 +39,10 @@ export default {
     }),
     commonjs(),
     typescript(),
-    styles({
+    postcss({
       modules: true,
+      extract: false,
+
     }),
     json(),
     babel({
