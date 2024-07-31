@@ -1,0 +1,30 @@
+.nav {
+  background: #000000;
+
+  text-align: center;
+  display: flex;
+  gap: 5px;
+  height: 25px;
+  margin: 2px 0;
+  align-items: center;
+  padding: 10px;
+}
+.smallCrumb {
+  display: none;
+}
+.bigCrumb {
+  display: flex;
+}
+
+@media (max-width: 650px) {
+  .nav {
+    font-size: 12px;
+    height: fit-content;
+  }
+  .smallCrumb {
+    display: flex;
+  }
+  .bigCrumb {
+    display: none;
+  }
+}

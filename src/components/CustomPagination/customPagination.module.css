@@ -1,7 +1,7 @@
 .pagination {
   display: flex;
   justify-content: center;
-  padding: 4px 12px;
+  
 }
 
 @media (max-width: 660px) {

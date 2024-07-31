@@ -1,17 +1,2 @@
-.wrapper {
-  min-height: 350px;
-}
 
-@media (max-width: 660px) {
-  .Table__wrapper {
-    align-content: start;
-  }
-  .wrapper {
-    font-size: 12px;
-    overflow-y: scroll;
-  }
-}
 
-.authorsTable {
-  min-height: 300px;
-}
