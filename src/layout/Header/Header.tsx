@@ -1,10 +1,10 @@
 import { FC, useState } from "react";
-import { Slider } from "../Slider";
+import { Menu } from "../Menu";
 import { SubHeader } from "../SubHeader";
 import styles from "./header.module.css";
 import { Logo } from "../Logo";
 import { Hamburger } from "../Hamburger";
-import { Backdrop } from "../Slider/Backdrop";
+import { DropBack } from "../Menu/DropBack";
 
 export const Header: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,13 +13,13 @@ export const Header: FC = () => {
       <header className={styles.header}>
         <Logo/>
         <Hamburger setIsMenuOpen={setIsMenuOpen}/>
-        <Slider
+        <Menu
           isOpen={isMenuOpen}
           toggleMenu={() => {
             setIsMenuOpen(false);
           }}
         />
-        <Backdrop isOpen={isMenuOpen} setIsOpen={setIsMenuOpen}/>
+        <DropBack isOpen={isMenuOpen} setIsOpen={setIsMenuOpen}/>
       </header>
       <SubHeader />
     </>

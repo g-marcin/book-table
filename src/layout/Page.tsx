@@ -1,11 +1,11 @@
 import { PropsWithChildren, FC } from 'react'
 
 interface PageProps extends PropsWithChildren {
-    
+    className:string|undefined
 }
 
-export const Page:FC<PageProps> = ({children}) => {
+export const Page:FC<PageProps> = ({children, className}) => {
   return (
-    <div>{children}</div>
+    <main className={className}>{children}</main>
   )
 }

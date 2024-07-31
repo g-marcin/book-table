@@ -8,6 +8,7 @@ import { CustomPagination } from "../../components/CustomPagination";
 import { AuthorRecordType } from "../../types";
 import { authorDataMapper } from "../mappers";
 import styles from "./authorsTable.module.css";
+import { useParams } from "react-router-dom";
 
 export const AuthorsTable: FC = () => {
   const [page, setPage] = useState(1);
@@ -31,28 +32,20 @@ export const AuthorsTable: FC = () => {
     }, 1000);
   }, [page]);
 
+
+  const params = useParams()
   return (
-    <div className={styles.wrapper}>
-      <Table className={styles.authorsTable}>
-        <thead>
-          <tr role="table-header">
-            <th>
-              Author
-            </th>
-          </tr>
-        </thead>
-        <tbody style={{ height: "500px" }}>
+    <div className=" bg-gray-200 w-96 flex-col">
+      {params.authorId && <div>{params.authorId}</div>}
+     
+       
           {/* fetchedAuthors */}
-          {isLoading ? (
-            <Loader />
-          ) : (
-            fetchedAuthors.map(({ id, author }: AuthorRecordType) => {
-              return <AuthorRecord author={author} key={id} />;
-            })
-          )}       
-        </tbody>
-            <CustomPagination page={page} setPageHandler={setPageHandler} />
-      </Table>
+          
+          {fetchedAuthors.map(({ id, author }: AuthorRecordType) =>{
+              return <AuthorRecord author={author} className="" key={id} />
+            })}
+
+<CustomPagination page={page} setPageHandler={setPageHandler} />
     </div>
   );
 };

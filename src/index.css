@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  @apply h-full;
+}
+body {
+  @apply h-full;
+}
+div#__next {
+  @apply h-full;
+}
+main {
+  @apply h-full;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -38,7 +51,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
-  color:#1a1a1a
+  color:#fffefe
 }
 button:hover {
   border-color: #646cff;
@@ -59,4 +72,12 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+body{
+  height: 1080px;
+}
+
+div#root{
+  height: 100%;
 }

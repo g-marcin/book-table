@@ -1,15 +1,2 @@
-.authorsTable{
-  max-width: 500px;
-  overflow: scroll;
-}
 
-@media (max-width: 660px) {
-  .Table__wrapper {
-    align-content: start;
-  }
-  .wrapper {
-    font-size: 12px;
-    overflow-y: scroll;
-  }
-}
 

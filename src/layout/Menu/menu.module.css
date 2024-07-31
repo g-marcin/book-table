@@ -7,7 +7,9 @@
   background: #808080;
   opacity: 0.9;
   z-index: 2;
-  padding: 35px 20px;
+
+  display: flex;
+  
 }
 
 .sliding-menu ul {
@@ -28,23 +30,6 @@
   font-weight: bold;
 }
 
-.menu-transition-enter {
-  transform: translateX(-100%);
-}
-
-.menu-transition-enter-active {
-  transform: translateX(0%);
-  transition: transform 300ms ease-in;
-}
-
-.menu-transition-exit {
-  transform: translateX(0%);
-}
-
-.menu-transition-exit-active {
-  transform: translateX(-100%);
-  transition: transform 300ms ease-in;
-}
 
 .end {
   justify-content: end;

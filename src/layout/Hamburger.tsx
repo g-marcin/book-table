@@ -13,7 +13,7 @@ export const Hamburger:FC<HamburgerProps> = ({setIsMenuOpen}) => {
           onClick={() => {
             setIsMenuOpen(true);
           }}
-          className={styles.hamburger}
+          className='ml-auto'
         >
           <Menu  />
         </button>

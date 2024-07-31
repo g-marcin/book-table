@@ -6,10 +6,10 @@ import { Page } from "./Page";
 
 export const Layout: FC = () => {
   return (
-   <Page>
+   <>
       <Header />
         <Outlet />
       <Footer />
-   </Page>
+   </>
   );
 };
