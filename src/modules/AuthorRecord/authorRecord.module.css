@@ -1,0 +1,5 @@
+.bookRecord {
+  cursor: pointer;
+  overflow-x: scroll;
+}
+

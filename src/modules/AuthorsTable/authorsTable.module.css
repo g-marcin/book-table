@@ -1,5 +1,6 @@
-.wrapper {
-  min-height: 350px;
+.authorsTable{
+  max-width: 500px;
+  overflow: scroll;
 }
 
 @media (max-width: 660px) {
@@ -12,6 +13,3 @@
   }
 }
 
-.authorsTable {
-  min-height: 300px;
-}

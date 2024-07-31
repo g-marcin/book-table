@@ -2,9 +2,8 @@ import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { ErrorPage } from "./ErrorPage";
 import { Layout, Loader } from "../components";
+import { AuthorsTable,AuthorBooks } from "../modules";
 const BooksPage = lazy(() => import("../modules/BooksPage/BooksPage"));
-const Details = lazy(() => import("../modules/Details/Details"));
-const BookDetails = lazy(() => import("../modules/Details/BookDetails/BookDetails"));
 
 export const AppRouter = createBrowserRouter([
   {
@@ -13,33 +12,36 @@ export const AppRouter = createBrowserRouter([
     errorElement: <ErrorPage errorMessage="Page not found" />,
     children: [
       {
-        path: "",
+        path: "/main",
         element: (
           <Suspense fallback={<Loader />}>
             <BooksPage />
           </Suspense>
         ),
-
-        children: [
-          {
-            path: ":author",
-            element: (
-              <Suspense fallback={<Loader />}>
-                <Details />
-              </Suspense>
-            ),
-            children: [
-              {
-                path: ":bookId",
-                element: (
-                  <Suspense fallback={<Loader />}>
-                    <BookDetails />
-                  </Suspense>
-                ),
-              },
-            ],
-          },
-        ],
+      },
+      {
+        path: "/authors",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <AuthorsTable />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/books",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <AuthorBooks fetchedBooks={[]}/>
+          </Suspense>
+        ),
+      },
+      {
+        path: "/description",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <BooksPage />
+          </Suspense>
+        ),
       },
     ],
   },

@@ -1,8 +1,6 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  flex: 7;
-  gap: 10px;
 }
 
 .center {

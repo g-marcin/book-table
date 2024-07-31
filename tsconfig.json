@@ -18,9 +18,11 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-        "@hooks/*": ["src/hooks/*"]
+        "@/*": [
+        "./src/*"
+      ],
       },
   },
   "include": ["src/**/*"],

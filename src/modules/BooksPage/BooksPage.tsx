@@ -1,16 +1,16 @@
 import { FC } from "react";
-import { Outlet } from "react-router-dom";
-import { AuthorsTable } from "../../modules";
-import styles from "./booksPage.module.css";
-import { Divider } from "../../components";
+import { AuthorsTable } from "..";
+import Details from "../Details/Details";
+import BookDetails from "../BookDetails/BookDetails";
 
 const BooksPage: FC = () => {
+  
   return (
-    <div className={styles.booksPageWrapper}>
-      <AuthorsTable />
-      <Outlet />
-      <Divider />
-    </div>
+    <>
+     <AuthorsTable />
+     <Details />
+     <BookDetails />     
+    </>
   );
 };
 
