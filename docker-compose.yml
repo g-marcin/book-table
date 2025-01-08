@@ -1,9 +1,12 @@
-version: '3'
+version: '3.8'
+
 services:
-  app:
-    build: 
-      context: .
-      dockerfile: Dockerfile
-    image: ggmarcin/book-table
+  book-table:
+    image: ggmarcin/book-table:latest
     ports:
       - "5000:5000"
+    environment:
+      - ENV_VAR1=value1
+      - ENV_VAR2=value2
+    volumes:
+      - ./data:/app/data
