@@ -1,14 +1,20 @@
 export type bookVolumeDTO = {
   id: string;
   volumeInfo: {
+    title:string;
     author: string;
     category: string;
     language: string;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    [k: string]: any;
+    authors:string[]
+    categories:string[]
+    publisher:string
+    imageLinks:{
+      thumbnail:string
+    }
+    
+    [k: string]: unknown;
   };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [k: string]: any;
+  [k: string]: unknown;
 };
 
 export type AuthorRecordType = {
@@ -29,6 +35,5 @@ export type BookRecordType = {
 export type BookDetailsType = {
   title: string;
   description: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [k: string]: any;
+  [k: string]: unknown;
 };

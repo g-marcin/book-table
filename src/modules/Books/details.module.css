@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  margin: auto;
+}
+
+.line {
+  border: 2px solid black;
+}
